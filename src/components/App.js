@@ -1,4 +1,6 @@
-import logo from './images/header-logo.svg'
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer'
 
 function App() {
   return (
@@ -11,32 +13,9 @@ function App() {
     // </head>
     <>
       <div class="page">
-        <header class="header">
-          <img class="header__logo" src={logo} alt="Назание сайта: Mesto Russia" />
-        </header>
-
-        <main class="content">
-          <section class="profile">
-            <div class="profile__avatar-container">
-              <img class="profile__avatar" src="#" alt="Аватар профиля" />
-            </div>
-            <div class="profile__info">
-              <button class="profile__edit-button" type="button">
-              </button>
-              <h1 class="profile__name">Имя</h1>
-              <p class="profile__description">Описание</p>
-            </div>
-            <button class="profile__add-button" type="button">
-            </button>
-          </section>
-
-          <section class="elements">
-          </section>
-        </main>
-
-        <footer class="footer">
-          <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
 
         <div class="popup name-popup">
           <div class="name-popup__container">
