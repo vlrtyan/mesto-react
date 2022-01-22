@@ -1,21 +1,31 @@
 function Main() {
+    const handleEditAvatarClick = () => {
+        document.querySelector('.avatar').classList.add('popup_opened')
+    }
+    const handleEditProfileClick = () => {
+        document.querySelector('.name-popup').classList.add('popup_opened')
+    }
+    const handleAddPlaceClick = () => {
+        document.querySelector('.new-item').classList.add('popup_opened')
+    }
+
     return (
-        <main class="content">
-            <section class="profile">
-                <div class="profile__avatar-container">
-                    <img class="profile__avatar" src="#" alt="Аватар профиля" />
+        <main className="content">
+            <section className="profile">
+                <div className="profile__avatar-container" onClick={handleEditAvatarClick}>
+                    <img className="profile__avatar" src="#" alt="Аватар профиля" />
                 </div>
-                <div class="profile__info">
-                    <button class="profile__edit-button" type="button">
+                <div className="profile__info">
+                    <button className="profile__edit-button" type="button" onClick={handleEditProfileClick}>
                     </button>
-                    <h1 class="profile__name">Имя</h1>
-                    <p class="profile__description">Описание</p>
+                    <h1 className="profile__name">Имя</h1>
+                    <p className="profile__description">Описание</p>
                 </div>
-                <button class="profile__add-button" type="button">
+                <button className="profile__add-button" type="button" onClick={handleAddPlaceClick}>
                 </button>
             </section>
 
-            <section class="elements">
+            <section className="elements">
             </section>
         </main>
     )
