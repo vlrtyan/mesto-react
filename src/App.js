@@ -1,3 +1,5 @@
+import logo from './images/header-logo.svg'
+
 function App() {
   return (
     // <!DOCTYPE html>
@@ -10,7 +12,7 @@ function App() {
     <>
       <div class="page">
         <header class="header">
-          <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Назание сайта: Mesto Russia" />
+          <img class="header__logo" src={logo} alt="Назание сайта: Mesto Russia" />
         </header>
 
         <main class="content">
