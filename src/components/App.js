@@ -43,6 +43,7 @@ function App() {
           onAddPlace={handleAddPlaceClick}
         />
         <Footer />
+        
         {/* попап редактирования профиля */}
         <PopupWithForm
           name={'edit-profile'}
@@ -86,6 +87,7 @@ function App() {
             required />
           <span className="error" id="avatar-link-error"></span>
         </PopupWithForm>
+
         {/* попап добавления карточки */}
         <PopupWithForm
           name={'add-place'}
