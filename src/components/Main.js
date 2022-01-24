@@ -14,7 +14,8 @@ function Main(props) {
                 setUserDescription(userData.about);
                 setUserAvatar(userData.avatar);
             })
-    })
+            .catch((err) => {console.log(err)})
+    }, [])
 
     const [cards, setCards] = React.useState([]);
 
@@ -23,7 +24,8 @@ function Main(props) {
             .then((res) => {
                 setCards(res);
             })
-    })
+            .catch((err) => {console.log(err)})
+    }, [])
 
     return (
         <main className="content">
