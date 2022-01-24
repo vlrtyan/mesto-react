@@ -15,12 +15,19 @@ function Main(props) {
             })
     })
 
+    const [cards, setCards] = React.useState([]);
+
+    React.useEffect(() => {
+        api.getInitialCards()
+            .then((res) => {
+                setCards(res);
+            })
+    })
+
     return (
         <main className="content">
             <section className="profile">
-                <div className="profile__avatar-container" onClick={props.onEditAvatar}>
-                    <img className="profile__avatar" src = {`${userAvatar}`} alt="Аватар профиля" />
-                </div>
+                <div className="profile__avatar" style={{ backgroundImage: `url(${userAvatar})` }} alt="Аватар профиля" onClick={props.onEditAvatar}></div>
                 <div className="profile__info">
                     <button className="profile__edit-button" type="button" onClick={props.onEditProfile}>
                     </button>
@@ -32,6 +39,18 @@ function Main(props) {
             </section>
 
             <section className="elements">
+                {cards.map((card, _id) => (
+                    <div className="element" key={card._id}>
+                        <img className="element__image" src={card.link} alt="Описание" />
+                        <button className="element__delete-button" type="button"></button>
+                        <div className="element__info">
+                            <h2 className="element__title">{card.name}</h2>
+                            <div className="element__like-container">
+                                <button className="element__like-button" type="button"></button>
+                                <p className="element__like-counter">{card.likes.length}</p>
+                            </div>
+                        </div>
+                    </div>))}
             </section>
         </main>
     )

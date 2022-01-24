@@ -43,7 +43,7 @@ function App() {
           onAddPlace={handleAddPlaceClick}
         />
         <Footer />
-        
+
         {/* попап редактирования профиля */}
         <PopupWithForm
           name={'edit-profile'}
@@ -125,21 +125,6 @@ function App() {
       </div>
 
       <ImagePopup />
-
-      <template className="template" id="templateCard">
-        <div className="element">
-          <img className="element__image" src="images/elements/pavlovskoe.jpeg" alt="Описание" />
-          <button className="element__delete-button" type="button"></button>
-          <div className="element__info">
-            <h2 className="element__title">Название</h2>
-            <div className="element__like-container">
-              <button className="element__like-button" type="button"></button>
-              <p className="element__like-counter">0</p>
-            </div>
-
-          </div>
-        </div>
-      </template>
     </>
     /* </html> */
   )
