@@ -112,15 +112,6 @@ function App() {
             required />
           <span className="error" id="place-link-error"></span>
         </PopupWithForm>
-
-        {/* попап подтверждения удаления
-        <PopupWithForm
-          name={'confirm'}
-          title={'Вы уверены?'}
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}>
-          <button className="confirm__submit-button popup__submit-button" type="submit">Да</button>
-        </PopupWithForm> */}
       </div>
 
       <ImagePopup
