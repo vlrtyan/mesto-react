@@ -10,6 +10,7 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState();
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState();
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   const handleEditAvatarClick = () => {
     setEditAvatarPopupOpen(true);
@@ -20,20 +21,17 @@ function App() {
   const handleAddPlaceClick = () => {
     setAddPlacePopupOpen(true);
   }
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  }
   const closeAllPopups = () => {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+    setSelectedCard(false);
   }
 
   return (
-    // <!DOCTYPE html>
-    // <html lang="ru">
-    // <head>
-    //   <meta charset="UTF-8">
-    //   <meta name="viewport" content="width=device-width, initial-scale=1">
-    //   <title>Место</title>
-    // </head>
     <>
       <div className="page">
         <Header />
@@ -41,6 +39,7 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
 
@@ -57,8 +56,8 @@ function App() {
             name="fullname"
             id="fullname"
             required
-            minlength="2"
-            maxlength="40" />
+            minLength="2"
+            maxLength="40" />
           <span className="error" id="fullname-error"></span>
           <input
             type="text"
@@ -67,8 +66,8 @@ function App() {
             name="description"
             id="description"
             required
-            minlength="2"
-            maxlength="200" />
+            minLength="2"
+            maxLength="200" />
           <span className="error" id="description-error"></span>
         </PopupWithForm>
 
@@ -101,8 +100,8 @@ function App() {
             name="name"
             id="place-name"
             required
-            minlength="2"
-            maxlength="30" />
+            minLength="2"
+            maxLength="30" />
           <span className="error" id="place-name-error"></span>
           <input
             type="url"
@@ -124,9 +123,11 @@ function App() {
         </PopupWithForm> */}
       </div>
 
-      <ImagePopup />
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
     </>
-    /* </html> */
   )
 }
 
