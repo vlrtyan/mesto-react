@@ -72,28 +72,6 @@ export class Api {
             .then(this.__getResponseData);
     }
 
-    putLike(data) {
-        return fetch(`${this.url}/cards/${data._id}/likes`, {
-            method: 'PUT',
-            headers: {
-                authorization: this.token,
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(this.__getResponseData);
-    }
-
-    removeLike(data) {
-        return fetch(`${this.url}/cards/${data._id}/likes`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this.token,
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(this.__getResponseData);
-    }
-
     changeAvatar(data) {
         return fetch(`${this.url}/users/me/avatar`, {
             method: 'PATCH',
@@ -107,6 +85,29 @@ export class Api {
         })
             .then(this.__getResponseData);
     }
+
+    changeLikeCardStatus(data, isLiked) {
+        if (isLiked === true) {
+            return fetch(`${this.url}/cards/${data._id}/likes`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: this.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(this.__getResponseData);
+        } else {
+            return fetch(`${this.url}/cards/${data._id}/likes`, {
+                method: 'PUT',
+                headers: {
+                    authorization: this.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(this.__getResponseData);
+        }
+    }
+
 }
 
 export const api = new Api({
