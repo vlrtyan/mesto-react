@@ -5,6 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
 import { api } from '../utils/Api.js';
 
@@ -34,6 +35,14 @@ function App() {
     setAddPlacePopupOpen(false);
     setSelectedCard({});
   }
+  const handleUpdateUser = ({name, about}) => {
+    api.editUserData({name, about})
+    .then((res) => {
+      setCurrentUser(res);
+      closeAllPopups();
+    })
+    .catch(err => console.log(err))
+  }
 
   React.useEffect(() => {
     api.getUserData()
@@ -55,32 +64,11 @@ function App() {
           <Footer />
 
           {/* попап редактирования профиля */}
-          <PopupWithForm
-            name={'edit-profile'}
-            title={'Редактировать профиль'}
+          <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}>
-            <input
-              type="text"
-              placeholder="Жак-Ив Кусто"
-              className="popup__input name-popup__input name-popup__input_type_name"
-              name="fullname"
-              id="fullname"
-              required
-              minLength="2"
-              maxLength="40" />
-            <span className="error" id="fullname-error"></span>
-            <input
-              type="text"
-              placeholder="Исследователь океана"
-              className="popup__input name-popup__input name-popup__input_type_description"
-              name="description"
-              id="description"
-              required
-              minLength="2"
-              maxLength="200" />
-            <span className="error" id="description-error"></span>
-          </PopupWithForm>
+            onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
+          />
 
           {/* попап редактирования аватара */}
           <PopupWithForm

@@ -31,7 +31,7 @@ export class Api {
             .then(this.__getResponseData);
     }
 
-    editUserData(data) {
+    editUserData({name, about}) {
         return fetch(`${this.url}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -39,8 +39,8 @@ export class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: data.name,
-                about: data.about
+                name: name,
+                about: about
             })
         })
             .then(this.__getResponseData);
