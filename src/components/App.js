@@ -6,6 +6,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import CurrentUserContext from '../contexts/CurrentUserContext.js';
 import { api } from '../utils/Api.js';
 
@@ -35,13 +36,21 @@ function App() {
     setAddPlacePopupOpen(false);
     setSelectedCard({});
   }
-  const handleUpdateUser = ({name, about}) => {
-    api.editUserData({name, about})
-    .then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    })
-    .catch(err => console.log(err))
+  const handleUpdateUser = ({ name, about }) => {
+    api.editUserData({ name, about })
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err))
+  }
+  const handleUpdateAvatar = ({avatar}) => {
+    api.changeAvatar({avatar})
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(err => console.log(err))
   }
 
   React.useEffect(() => {
@@ -71,20 +80,11 @@ function App() {
           />
 
           {/* попап редактирования аватара */}
-          <PopupWithForm
-            name={'edit-avatar'}
-            title={'Обновить аватар'}
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}>
-            <input
-              type="url"
-              placeholder="Ссылка"
-              className="popup__input avatar__input avatar__input_type_link"
-              name="link"
-              id="avatar-link"
-              required />
-            <span className="error" id="avatar-link-error"></span>
-          </PopupWithForm>
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
 
           {/* попап добавления карточки */}
           <PopupWithForm
