@@ -5,33 +5,6 @@ import CurrentUserContext from '../contexts/CurrentUserContext.js';
 
 function Main(props) {
     const currentUser = React.useContext(CurrentUserContext);
-    const [cards, setCards] = React.useState([]);
-
-    function handleCardLike(card) {
-        const isLiked = card.likes.some(like => like._id === currentUser._id);
-        // отправить запрос в API и обновить данные карточки
-        api.changeLikeCardStatus(card, isLiked)
-            .then((newCard) => {
-                setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-            })
-            .catch(err => console.log(err));
-    }
-
-    function handleCardDelete(card) {
-        api.deleteCard(card)
-            .then(() => {
-                setCards((state) => state.filter((c) => c._id != card._id));
-            })
-            .catch(err => console.log(err));
-    }
-
-    React.useEffect(() => {
-        api.getInitialCards()
-            .then((res) => {
-                setCards(res);
-            })
-            .catch((err) => console.log(err))
-    }, [])
 
     return (
         <main className="content">
@@ -48,13 +21,13 @@ function Main(props) {
             </section>
 
             <section className="elements">
-                {cards.map((card) => (
+                {props.cards.map((card) => (
                     <Card
                         card={card}
                         key={card._id}
                         onCardClick={props.onCardClick}
-                        onCardLike={handleCardLike}
-                        onCardDelete={handleCardDelete}
+                        onCardLike={props.onCardLike}
+                        onCardDelete={props.onCardDelete}
                     />))}
             </section>
         </main>
