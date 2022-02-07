@@ -22,6 +22,7 @@
     background-repeat: no-repeat;
     background-size: 26px 26px;
     border-radius: 50%;
+    background-position: center;
 }
 
 .profile__avatar:hover{

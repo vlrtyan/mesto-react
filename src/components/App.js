@@ -54,7 +54,7 @@ function App() {
       .catch(err => console.log(err))
   }
 
-  function handleCardLike(card) {
+  const handleCardLike = (card) => {
     const isLiked = card.likes.some(like => like._id === currentUser._id);
     // отправить запрос в API и обновить данные карточки
     api.changeLikeCardStatus(card, isLiked)
@@ -64,7 +64,7 @@ function App() {
       .catch(err => console.log(err));
   }
 
-  function handleCardDelete(card) {
+  const handleCardDelete = (card) => {
     api.deleteCard(card)
       .then(() => {
         setCards((state) => state.filter((c) => c._id != card._id));
@@ -72,7 +72,7 @@ function App() {
       .catch(err => console.log(err));
   }
 
-  function handleAddPlaceSubmit(newCard) {
+  const handleAddPlaceSubmit = (newCard) => {
     api.addNewItem(newCard)
     .then((newCard) => {
       setCards([newCard, ...cards])
