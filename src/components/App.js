@@ -11,13 +11,13 @@ import CurrentUserContext from '../contexts/CurrentUserContext.js';
 import { api } from '../utils/Api.js';
 
 function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState();
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState();
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState();
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
   const [cards, setCards] = React.useState([]);
 
-  const [currentUser, setCurrentUser] = React.useState('');
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const handleEditAvatarClick = () => {
     setEditAvatarPopupOpen(true);
@@ -98,7 +98,6 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <>
         <div className="page">
           <Header />
           <Main
@@ -139,7 +138,6 @@ function App() {
           card={selectedCard}
           onClose={closeAllPopups}
         />
-      </>
     </CurrentUserContext.Provider>
   )
 }
